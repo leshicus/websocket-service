@@ -1,0 +1,9 @@
+FROM ubuntu:latest
+RUN sudo apt-get install -y nodejs
+RUN mkdir -p /var/www/
+ADD ./ /var/www/websocket-service
+WORKDIR /var/www/websocket-service
+RUN npm install
+ADD ./docker /docker
+RUN chmod +x /docker/scripts/init.sh
+CMD ["/docker/scripts/init.sh"]
